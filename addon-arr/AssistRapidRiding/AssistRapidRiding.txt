@@ -1,0 +1,32 @@
+## APIVersion: 100027 100028
+## Title: Assist Rapid Riding
+## Author: Cloudor
+## Version: @@ADDON_VERSION@@
+## Description: Help you to speed up your riding.
+## OptionalDependsOn: LibStub LibAddonMenu-2.0
+## SavedVariables: ARRSV
+
+libs\LibStub\LibStub.lua
+
+libs\LibAddonMenu-2.0\LibAddonMenu-2.0.lua
+libs\LibAddonMenu-2.0\controls\panel.lua
+libs\LibAddonMenu-2.0\controls\submenu.lua
+libs\LibAddonMenu-2.0\controls\button.lua
+libs\LibAddonMenu-2.0\controls\checkbox.lua
+libs\LibAddonMenu-2.0\controls\colorpicker.lua
+libs\LibAddonMenu-2.0\controls\description.lua
+libs\LibAddonMenu-2.0\controls\dropdown.lua
+libs\LibAddonMenu-2.0\controls\header.lua
+libs\LibAddonMenu-2.0\controls\slider.lua
+libs\LibTextDict-2\LibTextDict.lua
+libs\LibTypeRegistry\LibTypeRegistry.lua
+
+i18n\en.lua
+i18n\$(language).lua
+
+src\Addon.lua
+src\Bindings.xml
+src\Settings.lua
+src\Core.lua
+
+

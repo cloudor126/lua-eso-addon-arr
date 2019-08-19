@@ -1,0 +1,135 @@
+v3.1.8a
+- Shared in github git@github.com:cloudor126/lua-eso-addon-arr.git
+
+v3.1.8
+- Improved digit pattern matching to find buff duration info in description for jp/ru client.
+
+v3.1.7
+- Added a nil bug check that seems to be useful for jp and ru client version.
+
+v3.1.6
+- Optimized duration number selection by parsing description rather than the GetAbilityDuration api.
+
+v3.1.5
+- Marked as updated.
+
+v3.1.4
+- Marked as updated.
+
+v3.1.3
+- Marked as updated.
+
+v3.1.2
+- Reload skill info when skill points changed.
+
+v3.1.1
+- Improved delayed reverting if weapon pair is swapped.
+
+v3.1.0
+- Changed another way to find out RM skill no matter what morph/level/language players are taking.
+
+v3.0.10
+- Removed patch for EVENT_MOUNTED_STATE_CHANGED. Thanks to Kafeijao again.
+- Added French translation. Thanks to Aleweadan.
+
+v3.0.9
+- Wait 1 second before reverting on foot for players to draw their weapons and have enouph time to cast RM skill.
+- Fixed a bug of nil error
+
+v3.0.8
+- Fixed skillLine value for jp clients.
+- Revert when skill is used no matter mounted or not. (In old versions, we must keep RM skill in slot if we are on foot, or rapid effect will be purged. But in current version, we can safely revert skills on foot while still having rapid effect.)
+
+v3.0.7
+- Modified menu option text.
+
+v3.0.6
+- Fixed a typo bug that caused error after combat.
+
+v3.0.5
+- Fixed a problem that RM skill line is different in de client.
+
+v3.0.4
+- Fixed a hotkey function lost from 3.x versions
+
+v3.0.3
+- Optimized the patch of EVENT_MOUNTED_STATE_CHANGED with EVENT_ABILITY_LIST_CHANGED
+
+v3.0.2
+- Solved confliction of LibTextDict with ActionDurationReminder.
+
+v3.0.1
+- Merged some patches from @kafeijao.
+
+v3.0.0
+- Rewrote this addon.
+
+v2.0.4
+- Added an option "Switch Back After Use When Mounted".Turn off this option to make RM skill stay in bar.
+- Restored the option "Seconds Left To Switch Again". Increase this value to recast RM skill again earlier.
+
+v2.0.3
+- Fixed a bug that "Account Wide Configuration" is saved at character level which should be account wide.
+- Added an option of "Always switch when mounted" enabled when "Auto switch when mounted" is turned on.
+
+v2.0.2
+- Fixed a bug that settings cannot be saved.
+
+v2.0.1
+- Fixed a bug that hot key doesn't work.
+
+v2.0.0
+- Rewrite.
+
+v1.15
+- Added a "Hotkey Only" option.
+
+v1.14
+- Marked new api version.
+
+v1.13
+- Fixed switch bug when RM is not skilled.
+
+v1.12
+- Added an "Account Wide Settings" option.
+
+v1.11
+- Fixed an recovery bug.
+- Improved debug log.
+
+v1.10
+- Fixed an error introduced in v1.09
+
+v1.09
+- Added a debug level option.
+
+v1.08
+- Added support for persistent character re-log recovery.
+- Added a key binding for manual switch, e.g. switch to RM while running in a dungeon where you cannot mount. NOTICE: If you are not mounted, your old skill will not be recovered automatically by this addon, because you will lose your RM buff after recovery if you are not mounted.
+
+v1.07
+- Added skill recovery after accepting a dungeon activity.
+
+v1.06
+- Fixed a recovery bug after changing character.
+- Added support for JP client.
+- Added recovery after combat.
+
+v1.05
+- Fixed a recovery bug.
+
+v1.04
+- Added sound options.
+
+v1.03
+- Fixed a recovering bug if sloted skill has different ability id from skills tree e.g. Blocade of Element.
+- Improved skill recovery when your swapped your weapon pair and dismount without calling RM.
+
+v1.02
+- Added support for dismount recovering.
+
+v1.01
+- Fixed UI error and skill recovering bug.
+
+v1.00
+- Initial implementation.
