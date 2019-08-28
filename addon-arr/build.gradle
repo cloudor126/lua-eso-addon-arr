@@ -4,8 +4,11 @@ plugins{
 
 ext.addonName = "AssistRapidRiding"
 ext.addonId = 1554
-ext.addonVersion = "3.1.8a"
 ext.addonCompatible = '5.1.5,5.0.5'
+file('changelog').withReader{reader->
+    def m = reader.readLine() =~ /\d+(\.\w+)+/
+    ext.addonVersion = m? m[0][0] : 'SNAPSHOT'
+}
 
 distTar.enabled = false
 distributions {
