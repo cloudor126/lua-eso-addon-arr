@@ -1,3 +1,6 @@
+v3.2.0
+- Changed lib dependencies as external.
+
 v3.1.9
 - Added ru.lua in i18n folder. Thanks to GJSmoker.
 

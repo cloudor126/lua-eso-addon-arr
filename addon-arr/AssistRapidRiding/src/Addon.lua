@@ -11,7 +11,7 @@ local VERSION = '@@ADDON_VERSION@@'
 --========================================
 l.actionMap = {} -- #map<#string,#()->()> store actions for bindings
 l.extensionMap = {} -- #map<#string,#list<#()->()>> store extensions for types
-l.registry = LibStub("LibTypeRegistry")(NAME) -- LibTypeRegistry#Registry
+l.registry = LibTypeRegistry(NAME) -- LibTypeRegistry#Registry
 l.started = false
 l.startListeners = {} -- #list<#()->()> store start listeners for initiation
 
@@ -36,7 +36,7 @@ end
 --========================================
 m.name = NAME -- #string
 m.version = VERSION -- #string
-m.text = LibStub("LibTextDict-2")(m.name).text -- #(#string:key)->(#string)
+m.text = LibTextDict(m.name).text -- #(#string:key)->(#string)
 
 m.addAction -- #(#string:key,#()->():action)->()
 = function(key, action)

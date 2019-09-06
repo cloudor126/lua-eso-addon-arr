@@ -2,9 +2,5 @@
 <buildpath>
 	<buildpathentry kind="src" path="AssistRapidRiding/src"/>
 	<buildpathentry kind="src" path="AssistRapidRiding/i18n"/>
-	<buildpathentry kind="src" path="AssistRapidRiding/libs/LibTextDict-2"/>
-	<buildpathentry kind="src" path="AssistRapidRiding/libs/LibTypeRegistry"/>
-	<buildpathentry kind="src" path="AssistRapidRiding/libs/LibAddonMenu-2.0"/>
-	<buildpathentry kind="src" path="AssistRapidRiding/libs/LibStub"/>
 	<buildpathentry combineaccessrules="false" kind="prj" path="/eso-api"/>
 </buildpath>
