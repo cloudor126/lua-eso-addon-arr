@@ -10,15 +10,20 @@ file('changelog').withReader{reader->
     ext.addonVersion = m? m[0][0] : 'SNAPSHOT'
 }
 
+CopySpec mainContents = copySpec {
+    filteringCharset = 'iso8859-1'
+    from addonName
+    filter{
+        it.replaceAll('@@ADDON_VERSION@@',addonVersion)
+    }
+}
+
 distTar.enabled = false
 distributions {
     main {
         baseName = addonName
         contents {
-            from addonName
-            filter{
-                it.replaceAll('@@ADDON_VERSION@@',addonVersion)
-            }
+            with mainContents
         }
     }
 }
@@ -29,11 +34,23 @@ distZip{
 
 if (hasProperty('ESO_PTS_ADDONS_DIR')){
     def installDir =  new File(project.property( 'ESO_PTS_ADDONS_DIR'),addonName)
-    installDist{
+    task installToPTS(type:Sync){
+        group 'distribution'
+        description 'Installs the project into PTS dir'
+        with mainContents
         into installDir
     }
 }
 
+if (hasProperty('ESO_LIVE_ADDONS_DIR')){
+    def installDir =  new File(project.property( 'ESO_LIVE_ADDONS_DIR'),addonName)
+    task installToLive(type:Sync){
+        group 'distribution'
+        description 'Installs the project into LIVE dir'
+        with mainContents
+        into installDir
+    }
+}
 task upload {
     group = "distribution"
     description = "upload addon zip file to esoui.com"
