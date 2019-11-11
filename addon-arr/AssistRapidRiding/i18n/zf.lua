@@ -1,5 +1,5 @@
 ZO_CreateStringId("SI_BINDING_NAME_ARR_SWITCH", "手册开关")
-local put = LibTextDict("AssistRapidRiding").put
+local put = AssistRapidRiding.putText
 put("Account wide configuration","账户全局配置")
 put("Ability slot to use","使用的技能栏")
 put("Enable autoswitch upon mounting/dismounting","开启根据上马/下马自动切换")

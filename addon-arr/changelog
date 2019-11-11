@@ -1,3 +1,6 @@
+v3.3.0
+- Refactored to remove some dependencies.
+
 v3.2.0b
 - Fixed a package script bug on filtering contents.
 

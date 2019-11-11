@@ -10,8 +10,9 @@ local VERSION = '@@ADDON_VERSION@@'
 --        l.
 --========================================
 l.actionMap = {} -- #map<#string,#()->()> store actions for bindings
+l.dict = {} --#map<#string,#string>
 l.extensionMap = {} -- #map<#string,#list<#()->()>> store extensions for types
-l.registry = LibTypeRegistry(NAME) -- LibTypeRegistry#Registry
+l.registry = {} --#map<#string,#any>
 l.started = false
 l.startListeners = {} -- #list<#()->()> store start listeners for initiation
 
@@ -36,7 +37,6 @@ end
 --========================================
 m.name = NAME -- #string
 m.version = VERSION -- #string
-m.text = LibTextDict(m.name).text -- #(#string:key)->(#string)
 
 m.addAction -- #(#string:key,#()->():action)->()
 = function(key, action)
@@ -75,12 +75,25 @@ end
 
 m.load -- #(#string:typeName)->($1)
 = function(typeName)
-  return l.registry:get(typeName)
+  return l.registry[typeName]
+end
+
+m.putText -- #(#string:key, #string:value)->()
+= function(key, value)
+  l.dict[key] = value
 end
 
 m.register -- #(#string:typeName, #any:typeProto)->()
 = function(typeName, typeProto)
-  l.registry:put(typeName,typeProto)
+  l.registry[typeName]=typeProto
+end
+
+m.text -- #(#string:key, #any:...)->(#string)
+= function(key,...)
+  if select('#',...) ==0 then
+    return l.dict[key] or key
+  end
+  return l.dict[key] and string.format(l.dict[key],...) or string.format(key,...)
 end
 
 --========================================

@@ -1,5 +1,5 @@
 ZO_CreateStringId("SI_BINDING_NAME_ARR_SWITCH", "Manual Switch")
-local put = LibTextDict("AssistRapidRiding").put
+local put = AssistRapidRiding.putText
 put("Account wide configuration","Настройки на аккаунт")
 put("Ability slot to use","Номер используемого слота")
 put("Enable autoswitch upon mounting/dismounting","Переключить на ездовом животном")

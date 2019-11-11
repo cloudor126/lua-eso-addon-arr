@@ -2,15 +2,16 @@
 ## Description: Help you to speed up your riding.
 ## Author: Cloudor
 ## Version: @@ADDON_VERSION@@
-## APIVersion: 100027 100028
+## APIVersion: 100028 100029
 ## AddOnVersion: 1
-## DependsOn: LibAddonMenu-2.0 LibTextDict LibTypeRegistry
+## DependsOn: LibAddonMenu-2.0
 ## SavedVariables: ARRSV
+
+src\Addon.lua
 
 i18n\en.lua
 i18n\$(language).lua
 
-src\Addon.lua
 src\Bindings.xml
 src\Settings.lua
 src\Core.lua
