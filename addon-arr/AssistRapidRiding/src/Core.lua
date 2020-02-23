@@ -26,6 +26,7 @@ local l = {} -- #L
 local coreSavedVarsDefaults = {
   switchAtAbilitySlot = 5,
   autoSwitchWhenMounted = true,
+  autoSwitchOnlyInNonPvpZones = false,
   alwaysSwitchWhenMounted = false,
   switchBackWhenMounted = true,-- this option ignore mounting status since murkmire
   autoSwitchAgainBeforeEffectFades = true,
@@ -74,7 +75,7 @@ l.getDuration -- #(#number:abilityId)->(#number)
   while true do
     s,e = description:find("[0-9]+",init,false)
     if s and s> 0 and tonumber(description:sub(s,e)) then
-      init = e+1 
+      init = e+1
       local percentLoc = description:find("%%",e,false)
       if not percentLoc or percentLoc > e+5 then
         local num = tonumber(description:sub(s,e)) * 1000
@@ -160,6 +161,12 @@ end
 l.onMountedStateChanged -- #(#number:eventCode,#boolean:mounted)->()
 = function(eventCode, mounted)
   if not l.getSavedVars().autoSwitchWhenMounted then return end
+  if l.getSavedVars().autoSwitchOnlyInNonPvpZones then
+    local mapFilterType = GetMapFilterType()
+    if mapFilterType == MAP_FILTER_TYPE_AVA_CYRODIIL
+      or mapFilterType == MAP_FILTER_TYPE_AVA_IMPERIAL
+    then return end
+  end
   if not mounted then
     if l.getCharacterSavedVars().oldSlotedSkill ~= nil then
       l.recover()
@@ -337,12 +344,22 @@ addon.extend(settings.EXTKEY_ADD_MENUS,function()
     --
     {
       type = "checkbox",
+      name = addon.text("Only autoswitch in non-pvp zones"),
+      getFunc = function() return l.getSavedVars().autoSwitchOnlyInNonPvpZones end,
+      setFunc = function(value) l.getSavedVars().autoSwitchOnlyInNonPvpZones=value end,
+      width = "full",
+      default =coreSavedVarsDefaults.autoSwitchOnlyInNonPvpZones,
+      disabled = function() return not l.getSavedVars().autoSwitchWhenMounted end
+    },
+    --
+    {
+      type = "checkbox",
       name = addon.text("Always autoswitch dispite of the effect"),
       getFunc = function() return l.getSavedVars().alwaysSwitchWhenMounted end,
       setFunc = function(value) l.getSavedVars().alwaysSwitchWhenMounted=value end,
       disabled = function() return not l.getSavedVars().autoSwitchWhenMounted end,
       width = "full",
-      default =coreSavedVarsDefaults.autoSwitchWhenMounted,
+      default =coreSavedVarsDefaults.alwaysSwitchWhenMounted,
     },
     --
     {

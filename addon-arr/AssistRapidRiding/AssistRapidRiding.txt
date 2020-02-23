@@ -2,7 +2,7 @@
 ## Description: Help you to speed up your riding.
 ## Author: Cloudor
 ## Version: @@ADDON_VERSION@@
-## APIVersion: 100028 100029
+## APIVersion: 100029 100030
 ## AddOnVersion: 1
 ## DependsOn: LibAddonMenu-2.0
 ## SavedVariables: ARRSV
