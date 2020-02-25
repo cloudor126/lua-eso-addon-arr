@@ -120,6 +120,12 @@ end
 l.onActionSlotAbilityUsed -- #(#number:eventCode,#number:slotNum, #boolean:force)->()
 = function(eventCode,slotNum, force)
   if not l.getSavedVars().switchBackWhenMounted then return end
+  if l.getSavedVars().autoSwitchOnlyInNonPvpZones then
+    local mapFilterType = GetMapFilterType()
+    if mapFilterType == MAP_FILTER_TYPE_AVA_CYRODIIL
+      or mapFilterType == MAP_FILTER_TYPE_AVA_IMPERIAL
+    then return end
+  end
   local oss = l.getCharacterSavedVars().oldSlotedSkill
   if not oss then return end
   if oss.slotNum ~= slotNum then return end
