@@ -266,8 +266,12 @@ l.switch -- #(#number:token, #boolean:force)->()
   local now = GetGameTimeMilliseconds()
   -- check
   if not l.rmSkillInfo then
-    l.debug(1)('arr-core:l.switch no rmSkillInfo')
-    return
+    l.debug(1)('arr-core:l.switch no rmSkillInfo, try again.')
+    l.loadSkillInfo()
+    if not l.rmSkillInfo then
+      l.debug(1)('arr-core:l.switch still no rmSkillInfo!!!')
+      return
+    end
   end
   if token ~= l.token then return end
   if not force and not IsMounted() then return end

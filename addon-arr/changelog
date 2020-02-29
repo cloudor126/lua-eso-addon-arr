@@ -1,3 +1,6 @@
+v3.3.2
+- Added one more retry to load skill info when preparing switch.
+
 v3.3.1a
 - Patched the previous feature. 
 
