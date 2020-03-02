@@ -1,3 +1,6 @@
+v3.3.3
+- Added a mounted state check to avoid auto switch failure. 
+
 v3.3.2
 - Added one more retry to load skill info when preparing switch.
 

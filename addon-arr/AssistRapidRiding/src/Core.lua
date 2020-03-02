@@ -180,7 +180,7 @@ l.onMountedStateChanged -- #(#number:eventCode,#boolean:mounted)->()
     return
   end
   if l.getSavedVars().alwaysSwitchWhenMounted then l.coverTime = 0 end
-  l.switch(l.token, false)
+  l.switch(l.token, IsMounted()~=mounted)
 end
 
 l.onPlayerActivated -- #(#number:eventCode,#boolean:initial)->()
@@ -262,7 +262,8 @@ table.sort(l.soundChoices)
 
 l.switch -- #(#number:token, #boolean:force)->()
 = function(token, force)
-  l.debug(1)('arr-core:l.switch token=%i,force=%s,l.token=%i',token,force and 'true' or 'false',l.token)
+  l.debug(1)('arr-core:l.switch token=%i,force=%s,l.token=%i,%s',token,force and 'true' or 'false',
+    l.token, IsMounted() and 'mounted' or 'not mounted')
   local now = GetGameTimeMilliseconds()
   -- check
   if not l.rmSkillInfo then
