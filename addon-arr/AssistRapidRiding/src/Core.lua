@@ -142,17 +142,17 @@ l.onActionSlotAbilityUsed -- #(#number:eventCode,#number:slotNum, #boolean:force
       l.coverTime = l.coverTime - l.getSavedVars().secondsLeftToSwitchAgain*1000
     end
     -- recover
-    if not force and not IsMounted() then
-      l.debug(1)('arr-core: call later to recover')
-      zo_callLater(l.recover,1000)
-    else
-      l.recover()
-      -- keep on check beyond buff
-      if l.getSavedVars().autoSwitchAgainBeforeEffectFades then
-        l.token = l.token +1
-        l.switch(l.token)
-      end
-    end
+    l.debug(1)('arr-core: call later to recover')
+    zo_callLater(
+      function()
+        l.recover()
+        if l.getSavedVars().autoSwitchAgainBeforeEffectFades then
+          l.token = l.token +1
+          l.switch(l.token)
+        end
+      end,
+      500
+    )
     return
   end
 end
@@ -298,6 +298,10 @@ l.switch -- #(#number:token, #boolean:force)->()
   l.waitRecover = false
   if l.getSavedVars().soundEnabled then PlaySound(SOUNDS[l.soundChoices[l.getSavedVars().soundIndex]]) end
   SlotSkillAbilityInSlot(l.rmSkillInfo.skillType, l.rmSkillInfo.skillLine, l.rmSkillInfo.abilityIndex, slotNum)
+  if AddonForCloudor then
+    local commander = AddonForCloudor.load('Commander#M')
+    if commander then commander.send({'s 200','k '..(slotNum-2)}) end
+  end
   l.debug(2)('arr-core:l.switch finished')
 end
 

@@ -1,3 +1,6 @@
+v3.3.4
+- Added a half second delay between using RM and recovering original skill.
+
 v3.3.3
 - Added a mounted state check to avoid auto switch failure. 
 
