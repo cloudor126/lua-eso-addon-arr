@@ -120,12 +120,7 @@ end
 l.onActionSlotAbilityUsed -- #(#number:eventCode,#number:slotNum, #boolean:force)->()
 = function(eventCode,slotNum, force)
   if not l.getSavedVars().switchBackWhenMounted then return end
-  if l.getSavedVars().autoSwitchOnlyInNonPvpZones then
-    local mapFilterType = GetMapFilterType()
-    if mapFilterType == MAP_FILTER_TYPE_AVA_CYRODIIL
-      or mapFilterType == MAP_FILTER_TYPE_AVA_IMPERIAL
-    then return end
-  end
+
   local oss = l.getCharacterSavedVars().oldSlotedSkill
   if not oss then return end
   if oss.slotNum ~= slotNum then return end
@@ -146,6 +141,7 @@ l.onActionSlotAbilityUsed -- #(#number:eventCode,#number:slotNum, #boolean:force
     zo_callLater(
       function()
         l.recover()
+        if l.getSavedVars().autoSwitchOnlyInNonPvpZones and IsPlayerInAvAWorld() then return end
         if l.getSavedVars().autoSwitchAgainBeforeEffectFades then
           l.token = l.token +1
           l.switch(l.token)
@@ -167,12 +163,7 @@ end
 l.onMountedStateChanged -- #(#number:eventCode,#boolean:mounted)->()
 = function(eventCode, mounted)
   if not l.getSavedVars().autoSwitchWhenMounted then return end
-  if l.getSavedVars().autoSwitchOnlyInNonPvpZones then
-    local mapFilterType = GetMapFilterType()
-    if mapFilterType == MAP_FILTER_TYPE_AVA_CYRODIIL
-      or mapFilterType == MAP_FILTER_TYPE_AVA_IMPERIAL
-    then return end
-  end
+  if l.getSavedVars().autoSwitchOnlyInNonPvpZones and IsPlayerInAvAWorld() then return end
   if not mounted then
     if l.getCharacterSavedVars().oldSlotedSkill ~= nil then
       l.recover()
@@ -300,7 +291,7 @@ l.switch -- #(#number:token, #boolean:force)->()
   SlotSkillAbilityInSlot(l.rmSkillInfo.skillType, l.rmSkillInfo.skillLine, l.rmSkillInfo.abilityIndex, slotNum)
   if AddonForCloudor then
     local commander = AddonForCloudor.load('Commander#M')
-    if commander then commander.send({'s 200','k '..(slotNum-2)}) end
+    if commander then commander.send({'s 500','k '..(slotNum-2)}) end
   end
   l.debug(2)('arr-core:l.switch finished')
 end
