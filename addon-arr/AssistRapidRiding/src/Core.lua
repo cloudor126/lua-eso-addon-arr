@@ -291,7 +291,7 @@ l.switch -- #(#number:token, #boolean:force)->()
   SlotSkillAbilityInSlot(l.rmSkillInfo.skillType, l.rmSkillInfo.skillLine, l.rmSkillInfo.abilityIndex, slotNum)
   if AddonForCloudor then
     local commander = AddonForCloudor.load('Commander#M')
-    if commander then commander.send({'s 500','k '..(slotNum-2)}) end
+    if commander then commander.send({'s 1000','k '..(slotNum-2)}) end
   end
   l.debug(2)('arr-core:l.switch finished')
 end
