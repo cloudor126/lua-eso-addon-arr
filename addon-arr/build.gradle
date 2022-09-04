@@ -21,7 +21,7 @@ CopySpec mainContents = copySpec {
 distTar.enabled = false
 distributions {
     main {
-        baseName = addonName
+        distributionBaseName  = addonName
         contents {
             with mainContents
         }
